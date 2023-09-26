@@ -22,8 +22,7 @@ export function Main() {
       <main>
         <div className="container">
           <div className="p-5">
-            <h2>Post</h2>
-            <p>Dai un oocchiata ai post più recenti</p>
+            <h2>Blog</h2>
           </div>
           <div className="row justify-content-center">
             {data.map((items) => (

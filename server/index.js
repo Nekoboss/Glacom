@@ -107,6 +107,51 @@ app.delete("/api/delete/:slug", (req, res) => {
   });
 });
 
+app.put("/api/update/:cod", (req, res) => {
+  const cod = req.params.cod;
+  const {
+    Title,
+    Slug,
+    Image,
+    Description,
+    CreatedAt,
+    Creator,
+    Content
+  } = req.body;
+  console.log("req body: " + req.body);
+  // Verifica se almeno un campo con valore è stato fornito
+  const fieldsToUpdate = [
+    "Title",
+    "Slug",
+    "Image",
+    "Description",
+    "CreatedAt",
+    "Creator",
+    "Content"
+  ].filter((field) => req.body[field]);
+
+  if (fieldsToUpdate.length === 0) {
+    res.status(400).json({ error: "Nessun campo con valore valido fornito" });
+    return;
+  }
+  console.log("fieldsToUpdate: " + fieldsToUpdate);
+
+  const query = `UPDATE blog SET ${fieldsToUpdate.map((field) => `${field} = ?`).join(", ")} WHERE Slug = ?`;
+  const values = [...fieldsToUpdate.map((field) => req.body[field]), cod];
+
+  // console.log("Server values: " + values);
+
+  connection.query(query, values, (err, results) => {
+    if (err) {
+      console.error("Errore nell'aggiornamento dei dati:", err);
+      res.status(500).json({ error: "Errore nel server" });
+      return;
+    }
+
+    // console.log("Dati aggiornati con successo");
+    res.json({ message: "Dati aggiornati con successo" });
+  });
+});
 
 
 const PORT = process.env.PORT || 3001;
