@@ -1,0 +1,31 @@
+.rounded-btn {
+    border-radius: 7px;
+}
+
+
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {}
+
+@media (min-width: 1400px) and (max-width: 1500px) {}
+
+@media (min-width: 1500px) and (max-width: 1875px) {}
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+@media (min-width: 1500px) and (max-width: 1742px) {}
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+
+/* small mobile :320px. */
+@media (max-width: 810px) {}
+
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+/* Large Mobile :480px. */
+@media only screen and (min-width: 600px) and (max-width: 767px) {}
+
+@media (max-width: 767px) {}
