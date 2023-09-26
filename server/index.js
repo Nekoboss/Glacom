@@ -107,6 +107,7 @@ app.delete("/api/delete/:slug", (req, res) => {
   });
 });
 
+// Route per Editare libri dal database
 app.put("/api/update/:cod", (req, res) => {
   const cod = req.params.cod;
   const {
@@ -139,16 +140,12 @@ app.put("/api/update/:cod", (req, res) => {
   const query = `UPDATE blog SET ${fieldsToUpdate.map((field) => `${field} = ?`).join(", ")} WHERE Slug = ?`;
   const values = [...fieldsToUpdate.map((field) => req.body[field]), cod];
 
-  // console.log("Server values: " + values);
-
   connection.query(query, values, (err, results) => {
     if (err) {
       console.error("Errore nell'aggiornamento dei dati:", err);
       res.status(500).json({ error: "Errore nel server" });
       return;
     }
-
-    // console.log("Dati aggiornati con successo");
     res.json({ message: "Dati aggiornati con successo" });
   });
 });
